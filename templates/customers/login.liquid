@@ -2,7 +2,18 @@
 {% include 'breadcrumb' %}
 <div class="container">
   <div class="row">
-    <div id="content" class="col-sm-12">
+              <style>
+  @media only screen and (max-width: 800px) {
+  .mobmargin {
+   margin-top:20px!important; 
+  }
+}
+</style>
+    <div class="col-12 col-sm-4">
+      <h1 class="mobmargin" style="margin-top:50%;font-size:50px;font-weight:900;">SIGN IN
+      OR MAKE A NEW ACCOUNT</h1>
+    </div>
+    <div id="content" class="col-12 col-sm-8">
       <div class="row">
         {% comment %}<h1 class="page-heading">{{ page_title }}</h1>{% endcomment %}
         <div class="alert alert-danger" style="display:none;">
@@ -11,7 +22,7 @@
         </div>
       </div>
       <div class="row">
-        <div class="col-sm-6">
+        <div class="col-sm-12">
           <div class="well">
             <h2>{{ 'customer.login.new_customer' | t }}</h2>
             <p><strong>{{ 'customer.login.register_account' | t }}</strong></p>
@@ -20,7 +31,7 @@
             <a href="register" id="button-account" class="btn btn-primary">{{ 'customer.login.continue' | t }}</a>
           </div>
         </div>
-        <div class="col-sm-6">
+        <div class="col-sm-12">
           <div class="well">
             <h2>{{ 'customer.login.returning_customer' | t }}</h2>
             <p><strong>{{ 'customer.login.returning_customer_info' | t }}</strong></p>
