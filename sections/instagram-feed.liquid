@@ -1,7 +1,9 @@
 <!-- Instagram -->
+<div class="container">
 <section class="instagram p-t-20" id="instagram_block_home" data-section-id="{{ section.id }}">
   {% include section.settings.layout %}
 </section>
+</div>
 <script type="text/javascript">
   $(document).ready(function () {
     var feed = new Instafeed({
@@ -88,9 +90,15 @@
 },
 {
 "type": "text",
+"id": "insta_subtitle",
+"label": "Title 1",
+"default": "@thalia"
+},
+{
+"type": "text",
 "id": "insta_title",
-"label": "Title",
-"default": "@ FOLLOW US ON INSTAGRAM"
+"label": "Title 2",
+"default": "Follow Us On Instagram"
 },
 {
 "type": "text",

@@ -1,0 +1,34 @@
+<div class="col-md-12 p-b-30">
+        <div class="p-r-20 p-r-0-lg">
+          <div class="contact-map size21">
+            {% if section.settings.show_map %}
+            {{ section.settings.map_code }}
+            {% endif %}
+          </div>
+        </div>
+      </div>
+{% schema %}
+  {
+    "name": "Map",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "show_map",
+        "label": "Show map",
+        "default": true
+      },
+      {
+        "type": "textarea",
+        "id": "map_code",
+        "label": "Map code snippet",
+        "info": "Go to google.com\/maps for generating code"
+      }
+    ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

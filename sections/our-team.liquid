@@ -1,0 +1,91 @@
+{% if section.settings.showot == "show" %}
+<div style="padding-top:30px;padding-bottom:30px;" class="container margin-top2">
+  {% if section.settings.heading03 != blank %}
+  <div style="text-align:center;" class="col-12 margin-bottom">
+    <span class="headinglato">{{ section.settings.heading03 }}</span><br>
+  </div>
+  {% endif %}
+  <div class="row">
+    <div class="col-12">
+      <div class="row">
+      {% for block in section.blocks %}
+      <div style="text-align:center;" class="col-12 col-sm-3">
+      {% if block.settings.memberimage %}
+      <img width="100%" src="{{ block.settings.memberimage | img_url:"grande" }}">                                                                       
+      {% endif %}
+      {% if block.settings.membername != blank %}
+      <span style="font-size:24px;margin-top:15px;display:block;" class="subheadinglato">{{ block.settings.membername }}</span>
+      {% endif %}
+      {% if block.settings.memberjob != blank %}
+      <span style="color:#7D8184;" class="textlato margin-bottom2">{{ block.settings.memberjob }}</span><br><br>
+      {% endif %}
+      </div>
+      {% endfor %}
+    </div>
+    </div>
+</div>
+</div>
+{% else %}
+  {% endif %}
+{% schema %}
+{
+  "name": "Our Team",
+  "settings": [
+	{
+      "type": "radio",
+      "options": [
+        {
+          "value": "show",
+          "label": "Show this section"
+        },
+        {
+          "value": "hide",
+          "label": "Hide this section"
+        }
+      ],
+      "id": "showot",
+	  "label" : "Section",
+      "default": "show",
+      "info": "Hide or show this section"
+    },
+	{
+      "type": "text",
+      "id": "heading03",
+	  "label": "Heading",
+      "info": "Your heading goes here (optional)"
+    }
+  ],
+"blocks": [
+    {
+      "type": "members",
+      "name": "Team Member",
+      "settings": [
+        {
+          "type": "image_picker",
+		  "label": "Photo",
+          "id": "memberimage"
+        },
+        {
+          "type": "text",
+          "id": "membername",
+		  "label": "Name",
+          "info": "Name of member"
+        },
+        {
+          "type": "text",
+          "id": "memberjob",
+		  "label": "Role",
+          "info": "Role of member"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 8
+}
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

@@ -1,0 +1,112 @@
+<div class="container margin-top2">
+  {% if section.settings.showiwt == "show" %}
+  <div class="row">
+    {% capture rightimage %}
+  	<div class="col-12 col-sm-6 imageabout">
+      <img src="{{ section.settings.image01 | img_url:"grande" }}">
+    </div>
+    {% endcapture %}
+    {% if section.settings.lr == "left" %}
+      {{ rightimage }}
+    {% endif %}
+    <div class="col-12 col-sm-6">
+      {% if section.settings.heading01 != blank %}
+      <br><span class="headinglato">{{ section.settings.heading01 }}</span><br>
+      {% endif %}
+      {% if section.settings.subheading01 != blank %}
+      <span style="font-weight:500;" class="subheadinglato">{{ section.settings.subheading01 }}</span><br>
+      {% endif %}
+      {% if section.settings.text01 != blank %}
+      <span style="color:#7D8184;font-weight:500;" class="textlato margin-bottom">{{ section.settings.text01 }}</span><br>
+      {% endif %}
+      {% if section.settings.signature01 %}
+      <img class="margin-top2" width="25%" src="{{ section.settings.signature01 | img_url:"grande" }}">
+      {% endif %}
+    </div>
+    {% if section.settings.lr == "right" %}
+      {{ rightimage }}
+    {% endif %}
+  </div>
+  {% else %}
+  {% endif %}
+</div>
+{% schema %}
+{
+  "name": "Image With Text",
+  "settings": [
+	{
+      "type": "radio",
+      "options": [
+        {
+          "value": "show",
+          "label": "Show this section"
+        },
+        {
+          "value": "hide",
+          "label": "Hide this section"
+        }
+      ],
+      "id": "showiwt",
+	  "label" : "Section",
+      "default": "show",
+      "info": "Hide or show this section"
+    },
+    {
+      "type": "select",
+      "id": "lr",
+	  "label": "Image Position",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "left",
+      "info": "Image Position"
+    },
+    {
+      "type": "image_picker",
+      "id": "image01",
+	  "label": "Main Image"
+    },
+    {
+      "type": "text",
+      "id": "heading01",
+	  "label": "Heading",
+      "info": "Your heading goes here (optional)"
+    },
+    {
+      "type": "text",
+      "id": "subheading01",
+	  "label": "Subheading",
+      "info": "Your subheading goes here (optional)"
+    },
+    {
+      "type": "textarea",
+      "id": "text01",
+	  "label": "Text",
+      "info": "Your text goes here (optional)"
+    },
+    {
+      "type": "image_picker",
+	  "label": "Signature",
+      "id": "signature01"
+    },
+	{
+      "type": "article",
+	  "label": "Test",
+      "id": "article"
+    }
+  ]
+}
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}
