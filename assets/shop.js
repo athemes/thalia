@@ -86,8 +86,6 @@ timber.init = function () {
   
 
   
-  timber.sortFilters();
-  
 };
 
 timber.initBreakpoints = function () {

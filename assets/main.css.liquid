@@ -818,7 +818,7 @@ li.sale-noti > a {
   width: 16px;
   height: 16px;
   border-radius: 50%;
-  background-color: #E65540;
+  background-color: {{ settings.color_skin }};
   color: white;
   font-family: Lato;
   font-weight:400;
@@ -2091,8 +2091,8 @@ li.sale-noti > a {
   color: #808080;
   width: 36px;
   height: 36px;
-  border-radius: 50%;
-  border: 1px solid #eeeeee;
+  border-radius: 0%;
+  border: 0px;
   margin: 6px;
 }
 
@@ -2102,8 +2102,12 @@ li.sale-noti > a {
 }
 
 .active-pagination {
-  background-color: #222222;
-  color: white;
+  	background-color:white;
+    border-radius: 0%;
+    color: black;
+    border: 0px;
+    font-weight: 900;
+    border-bottom: 2px solid black;
 }
 
 

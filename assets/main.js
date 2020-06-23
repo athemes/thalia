@@ -113,8 +113,18 @@
     
     /*[ Show menu mobile ]
     ===========================================================*/
+  var click=0;
     $('.btn-show-menu-mobile').on('click', function(){
-        $(this).toggleClass('is-active');
+      click++;
+      $(this).toggleClass('is-active');
+      if (click==1){
+        $('body').css('overflow-y','hidden');
+      }
+      else {
+      $('body').css('overflow-y','unset');
+      click=0;
+      }  
+      
         $('.wrap-side-menu').slideToggle();
     });
 
@@ -135,6 +145,7 @@
             }
             if($('.sub-menu').css('display') == 'block'){
                 $('.sub-menu').css('display','none');
+              	$('body').css('overflow-y','unset');
                 $('.arrow-main-menu').removeClass('turn-arrow');
             }
         }
