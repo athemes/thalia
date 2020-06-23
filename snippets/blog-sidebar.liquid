@@ -11,13 +11,13 @@
       </form>
     </div>
 
-    {% if settings.show_blog_side_listing %}
+    {% if section.settings.show_blog_side_listing %}
     <!-- Featured Products -->
     <h4 class="m-text14 p-b-20 p-t-20">
-      {{ settings.blog_side_listing_title }}
+      {{ section.settings.blog_side_listing_title }}
     </h4>
     <ul class="bgwhite">
-      {% assign product_collection = settings.collection_side_listing %}
+      {% assign product_collection = section.settings.blog_side_listing %}
       {% for product in collections[product_collection].products limit:5 %}
       {% include 'product-grid-item-small' %}
       {% endfor %}    

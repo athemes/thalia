@@ -32,7 +32,6 @@
     {% endif %}
   {% endif %}
 {% endfor %}
-
 {% unless found_option %}
 <div class="swatch error">
   <p>You included the snippet swatch.liquid with the name of a product option — <code>'{{ swatch }}'</code> — that does not belong to your product.</p>
@@ -57,7 +56,7 @@
         <input id="swatch-{{ option_index }}-{{ value | handle }}" type="radio" name="option-{{ option_index }}" value="{{ value | escape }}"{% if forloop.first %} checked{% endif %} {% unless variant.available %}disabled{% endunless %} />
         {% if is_color %}
         <div class="swatch-wrapper">
-        <label for="swatch-{{ option_index }}-{{ value | handle }}" style="background-color: {{ value | split: ' ' | last | handle }};opacity:0.7;{% comment %}background-image: url({{ value | handle | append: '.' | append: file_extension | asset_url }}){% endcomment %}">
+        <label id="{{ value | escape }}" for="swatch-{{ option_index }}-{{ value | handle }}" style="background-color: {{ value | escape }};opacity:0.7;{% comment %}background-image: url({{ value | handle | append: '.' | append: file_extension | asset_url }}){% endcomment %}">
           <img class="crossed-out" src="{{ 'soldout.png' | asset_url }}" />
         </label>
         </div>

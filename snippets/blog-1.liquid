@@ -1,5 +1,12 @@
 <section class="blog bgwhite p-t-94 p-b-65" data-section-id="{{ section.id }}">
   <div class="container">
+    <style>
+  @media only screen and (max-width: 800px) {
+  .block3 {
+   margin-top:20px!important; 
+  }
+}
+</style>
     <div class="sec-title p-b-52">
       <h3 class="m-text5 t-center">
         {{ section.settings.heading }}
@@ -9,9 +16,9 @@
       {% for article in blogs[section.settings.blog].articles %}
       <div class="col-sm-10 col-md-4 p-b-30 m-l-r-auto">
         <!-- Block3 -->
-        <div class="block3">
+        <div{% if forloop.index == 2 %} style="margin-top:40px;"{% endif %} class="block3">
           <a href="{{ article.url }}" class="block3-img dis-block hov-img-zoom">
-            <img src="{{ article.image.src | img_url: '720x539' }}" alt="">
+            <img{% if forloop.index == 2 %} style="border:2px solid black"{% endif %} src="{{ article.image.src | img_url: '720x539' }}" alt="">
             <span class="article_date s-text7">
               <time datetime="{{ article.published_at | date }}">
                 {{ article.published_at | date: "%b %d,%Y" }}

@@ -1,0 +1,72 @@
+<style type="text/css">
+	/* 26.05 Updates */
+  #threeadsmargin {
+    margin-top:21px;
+  }
+   .3adverts{
+        min-height:301px;
+        max-height:303px;
+        height:302px;
+    }
+  .block1-wrapbtn.w-size2 {
+  height:130px;
+  width:130px;
+  top:50%;
+  transform: translateX(-50%) translateY(-50%);
+  }
+  .block1-wrapbtn.w-size2 a {
+    font-size:24px;
+    font-weight:500;
+    text-transform:unset;
+    color:white;
+    height:100%;
+    border-radius:100%;
+    text-align:center;
+  }
+  .block1-wrapbtn.w-size2 .items{
+  font-size:14px;
+  position: absolute;
+  top: 60%;
+  }
+  .threeslides{
+  background-color:black;
+  }
+  .threeslides:hover{
+  background-color:{{ settings.color_skin }};
+}
+</style>
+<div class="banner bgwhite p-t-40 p-b-40" data-section-id="{{ section.id }}">
+  <div id="threeadsmargin" class="container">
+    <div class="row">
+      {% if section.blocks.size > 0 %}
+      {% for block in section.blocks limit:3 %}
+      <div class="col-sm-10 col-md-8 col-lg-4 m-l-r-auto 3adverts">
+        <!-- block{{forloop.index}} -->
+        <div class="block1 hov-img-zoom pos-relative m-b-30">
+          {% if block.settings.link != blank %}          
+          <a href="{{ block.settings.link }}" {{ block.shopify_attributes }}>
+            {% endif %}
+            {% if block.settings.image != blank %}
+            <img src="{{ block.settings.image | img_url: '250x250', crop: 'center' }}" class="" alt=""/>
+            {% endif %}
+            {% if block.settings.link != blank %}          
+          </a>
+          {% endif %}
+          <div class="block1-wrapbtn w-size2">
+            <!-- Button -->
+            {% if block.settings.link != blank %}
+            {% assign my_page_handle = block.settings.link | remove: "/collections/" %}
+            <a href="{{ block.settings.link }}" class="flex-c-m size2 m-text2 bg3 hov1 trans-0-4 threeslides" {{ block.shopify_attributes }}><span>{{ block.settings.link_text }}</span>
+              {% if collections[my_page_handle].all_products_count != "" %}
+               <span class="items">({{ collections[my_page_handle].all_products_count }} items)</span>
+              {% endif %}
+            </a>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+      {% endif %}
+    </div>
+  </div>
+</div>
