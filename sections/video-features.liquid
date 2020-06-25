@@ -1,0 +1,138 @@
+{% if section.settings.showvwf == "show" %}
+<div style="background-color:{{ section.settings.background }};" class="margin-top2">
+<div style="padding-top:30px;padding-bottom:30px;" class="container">
+  {% if section.settings.heading02 != blank %}
+  <div style="text-align:center;" class="col-12 margin-bottom">
+    <span class="headinglato">{{ section.settings.heading02 }}</span><br>
+  </div>
+  {% endif %}
+  <div class="row">
+    {% capture rightvideo %}
+  	<div class="col-12 col-sm-6 imageabout">
+      <iframe width="100%" height="300px" src="https://www.youtube.com/embed/{{ section.settings.video | remove: "https://www.youtube.com/watch?v=" }}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+    {% endcapture %}
+    {% if section.settings.lrvideo == "left" %}
+      {{ rightvideo }}
+    {% endif %}
+    <div class="col-12 col-sm-6">
+      <div class="row">
+      {% for block in section.blocks %}
+      {% if block.settings.blockimage %}
+      <div style="text-align:center;padding:20px;" class="col-3 col-sm-3">
+      <img width="35px" src="{{ block.settings.blockimage | img_url:"medium" }}">
+      </div>                                                                       
+      {% endif %}
+      <div class="margin-bottom {% if block.settings.blockimage %}col-9 col-sm-9{% else %}col-12 col-sm-12{% endif %}">
+      {% if block.settings.blockheading != blank %}
+      <span class="subheadinglato">{{ block.settings.blockheading }}</span><br>
+      {% endif %}
+      {% if block.settings.blocktext != blank %}
+      <span class="textlato margin-bottom">{{ block.settings.blocktext }}</span><br>
+      {% endif %}
+      </div>
+      {% endfor %}
+    </div>
+    </div>
+    {% if section.settings.lrvideo == "right" %}
+      {{ rightvideo }}
+    {% endif %}
+
+</div>
+</div>
+</div>
+{% else %}
+  {% endif %}
+{% schema %}
+{
+  "name": "Video with Features",
+  "settings": [
+	{
+      "type": "radio",
+      "options": [
+        {
+          "value": "show",
+          "label": "Show this section"
+        },
+        {
+          "value": "hide",
+          "label": "Hide this section"
+        }
+      ],
+      "id": "showvwf",
+	  "label" : "Section",
+      "default": "show",
+      "info": "Hide or show this section"
+    },
+	 {
+      "type": "color",
+      "id": "background",
+	  "label": "Background colour",
+  	  "default": "#F8F8F8",
+      "info": "Background colour"
+    },
+	{
+      "type": "text",
+      "id": "heading02",
+	  "label": "Heading",
+      "info": "Your heading goes here (optional)"
+    },
+    {
+      "type": "select",
+      "id": "lrvideo",
+	  "label": "Video Position",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "right",
+      "info": "Video Position"
+    },
+    {
+      "type": "video_url",
+      "id": "video",
+	  "label": "Video",
+  	  "default": "https://www.youtube.com/watch?v=ScMzIvxBSi4",
+      "accept": ["youtube"]
+    }
+  ],
+"blocks": [
+    {
+      "type": "feature",
+      "name": "Feature",
+      "settings": [
+        {
+          "type": "image_picker",
+		  "label": "Icon",
+          "id": "blockimage"
+        },
+        {
+          "type": "text",
+          "id": "blockheading",
+		  "label": "Feature heading",
+          "info": "Feature heading"
+        },
+        {
+          "type": "textarea",
+          "id": "blocktext",
+		  "label": "Feature text",
+          "info": "Feature text"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 3
+}
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

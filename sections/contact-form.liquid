@@ -1,0 +1,88 @@
+<style>#shopify-section-contact-form{width:100%;}</style>
+<div style="margin:0px;width:100%;" class="row">
+  {% if section.settings.extra == "show" %}
+  <div class="col-12 col-sm-6">
+    {% if section.settings.headingextra != blank %}<h3 class="headingalato margin-bottom">{{ section.settings.headingextra }}</h3>{% endif %}
+    {% if section.settings.textextra1 != blank %}<span style="font-size:18px;" class="textlato margin-top">{{ section.settings.textextra1 | newline_to_br }}</span><br><br>{% endif %}
+  	{% if section.settings.textextra2 != blank %}<span class="textlato margin-top margin-bottom">{{ section.settings.textextra2 | newline_to_br }}</span>{% endif %}
+  </div>
+  {% endif %}
+  <div class="col-12 {% if section.settings.extra == "show" %}col-sm-6{% else %}col-sm-12{% endif %}">
+  {% form 'contact' %}
+        {% if form.posted_successfully? %}
+        <p class="note form-success">
+          {{ 'contact.form.post_success' | t }}
+        </p>
+        {% endif %}
+
+        {% include 'form-errors-custom' %}
+        <h4 class="m-text26 p-b-36 p-t-15">{{ 'contact.form.leave_msg' | t }}</h4>
+        <div class="row">
+        <div class="col-md-6">
+        <div class="bo4 of-hidden size15 m-b-20">
+          <input type="text" id="contactFormName" name="contact[name]" class="sizefull s-text7 p-l-22 p-r-22" placeholder="{{ 'contact.form.name' | t }}" value="{% if form.name %}{{ form.name }}{% elsif customer %}{{ customer.name }}{% endif %}" />
+        </div>
+        </div>
+        <div class="col-md-6">
+        <div class="bo4 of-hidden size15 m-b-20">
+          <input type="text" id="contactFormEmail" name="contact[email]" class="sizefull s-text7 p-l-22 p-r-22" placeholder="{{ 'contact.form.email' | t }}" autocorrect="off" autocapitalize="off" value="{% if form.email %}{{ form.email }}{% elsif customer %}{{ customer.email }}{% endif %}" />
+        </div>
+        </div>
+        </div>
+        <textarea class="dis-block s-text7 size20 bo4 p-l-22 p-r-22 p-t-13 m-b-20" id="contactFormMessage" name="contact[body]" placeholder="{{ 'contact.form.message' | t }}">{% if form.body %}{{ form.body }}{% endif %}</textarea>
+        <div class="w-size25">
+          <!-- Button -->
+          <!--<input class="flex-c-m size2 bg1 bo-rad-23 hov1 m-text3 trans-0-4" id="submitMessage" name="submitMessage" type="submit" value="{{ 'contact.form.send' | t }}" /> -->
+          <button class="flex-c-m size2 bg1 hov1 m-text3 trans-0-4">
+            {{ 'contact.form.send' | t }}
+          </button>
+        </div>
+        {% endform %}  
+  </div>
+  
+  </div>
+<hr>
+{% schema %}
+{
+  "name": "Contact Form",
+  "settings": [
+    {
+      "type": "select",
+      "options": [
+        {
+          "value": "show",
+          "label": "Show"
+        },
+		{
+          "value": "hide",
+          "label": "Hide"
+        }
+      ],
+      "id": "extra",
+      "label": "Show extra information",
+      "default": "hide"
+    },
+    {
+      "type": "text",
+      "id": "headingextra",
+      "label": "Heading"
+    },
+    {
+      "type": "textarea",
+      "id": "textextra1",
+      "label": "Text"
+    },
+    {
+      "type": "textarea",
+      "id": "textextra2",
+      "label": "Additional text"
+    }
+  ]
+}
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

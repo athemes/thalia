@@ -1,0 +1,64 @@
+{% if section.settings.information == "show" %}
+<style>#shopify-section-additional-information{width:100%;}</style>
+<div style="margin:0px;width:100%;" class="row">
+  {% assign count = 0 %}
+  {% for block in section.blocks %}
+  {% assign count = count | plus: 1 %}
+  {% endfor %}
+  {% for block in section.blocks %}
+  <div class="col-12 {% if count == 1 %}col-sm-12{% elsif count == 2 %}col-sm-6{% elsif count == 3 %}col-sm-4{% elsif count == 4 %}col-sm-3{% endif %}">
+    {% if block.settings.heading != blank %}<h3 class="subheadingalato">{{ block.settings.heading }}</h3>{% endif %}
+    {% if block.settings.text != blank %}<p class="textlato margin-top margin-bottom">{{ block.settings.text | newline_to_br }}</p>{% endif %}
+  </div>
+  {% endfor %}
+  </div>
+<hr>
+{% endif %}
+{% schema %}
+{
+  "name": "Contact Us Information",
+  "settings": [
+    {
+      "type": "radio",
+      "options": [
+        {
+          "value": "show",
+          "label": "Show"
+        },
+        {
+          "value": "hide",
+          "label": "Hide"
+        }
+      ],
+      "id": "information",
+      "default": "show",
+      "label": "Show this section"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "Column",
+      "name": "Column",
+      "settings": [
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading"
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Text"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 4
+}
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

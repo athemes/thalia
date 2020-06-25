@@ -1,0 +1,71 @@
+{% if section.settings.showfaq=="show" %}
+<div class="container margin-top2">
+  <div class="row">
+    <div class="col-12 col-sm-3">
+      {% if section.settings.title != blank %}
+      <h2 class="headinglato">{{ section.settings.title }}</h2>
+      {% endif %}
+    </div>
+    <div class="col-12 col-sm-9">
+      {% for block in section.blocks %}
+      <button class="accordion">{{ block.settings.question }}</button>
+      <div class="panel">
+        <p class="textlato">{{ block.settings.answer }}</p>
+      </div>
+      {%endfor%}
+    </div>
+  </div>
+</div>
+{% endif %}
+{% schema %}
+{
+  "name": "FAQ Section 4",
+  "settings": [
+    {
+      "type": "radio",
+      "id": "showfaq",
+      "options": [
+        {
+          "value": "show",
+          "label": "Show"
+        },
+		{
+          "value": "hide",
+          "label": "Hide"
+        }
+      ],
+      "label": "Show or hide this section"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "question-answer",
+      "name": "Question and answer",
+      "settings": [
+        {
+          "type": "text",
+          "id": "question",
+          "label": "Question"
+        },
+        {
+          "type": "textarea",
+          "id": "answer",
+          "label": "Answer"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 1000
+}
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

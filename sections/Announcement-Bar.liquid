@@ -1,0 +1,127 @@
+<style>
+  .close:hover {
+  opacity: 1;
+}
+.close:before, .close:after {
+  position: absolute;
+  left: 15px;
+  content: ' ';
+  height: 20px;
+  width: 2px;
+  background-color: #fff;
+  color:#fff;
+}
+.close:before {
+  transform: rotate(45deg);
+}
+.close:after {
+  transform: rotate(-45deg);
+}
+  #shopify-section-header {
+  margin-top:{{ 30 | plus: block.settings.text-size }}px;
+  }
+</style>
+{% for block in section.blocks %}
+{% assign prev_i = forloop.index0 | minus: 1 %}
+<div id="announc-{{ forloop.index }}" style="
+            z-index:9999999999999;
+            width:100%;
+            padding-left:20px;padding-right:20px;
+            padding-top:15px;
+            padding-bottom:15px;
+            position:fixed;
+            top:0;
+            left:0;
+            text-align:center;
+            height:{{ 30 | plus: block.settings.text-size }}px;
+            background-color:{{ block.settings.background-color }}; 
+            " class="announc-bar">
+  {% assign max = 0 %}
+  {% if block.settings.text-size > max %}
+  <style>
+  #shopify-section-header {
+  margin-top:{{ 30 | plus: block.settings.text-size }}px;
+  }
+  </style>
+  {% assign max = block.settings.text-size %}
+  {% endif %}
+  {% if block.settings.text %}
+  {% if block.settings.link %}<a href="{{ block.settings.link }}" style="color:{{ block.settings.color }};">{% endif %}<p style="
+    		line-height:1;
+            font-size:{{ block.settings.text-size }}px;
+            color:{{ block.settings.color }};
+    ">{{ block.settings.text }}</p>{% if block.settings.link %}</a>{% endif %}
+  {% endif %}
+  <a onclick="closepopup('announc-{{ forloop.index }}');" class="close" style="cursor:pointer;width:20px;height:20px;position:absolute;top:15px;right:15px;"></a>
+</div>
+<script>
+  if (sessionStorage['announc-{{ forloop.index }}']==1){
+  document.getElementById('announc-{{ forloop.index }}').style.display="none";
+  } 
+</script>
+{% endfor %}
+<script>
+  function closepopup(id){
+    document.getElementById(id).style.display="none";
+    sessionStorage[id]=1;
+  }
+</script>
+{% schema %}
+{
+  "name": "Announcement Bar",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Add new announcement bars:"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "Announcement-Bar",
+      "name": "New Announcement Bar",
+      "settings": [
+        {
+          "type": "color",
+          "id": "background-color",
+          "default": "#000",
+          "label": "Background Colour"
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "placeholder": "Announce something here",
+          "label": "Text"
+        },
+		{
+          "type": "url",
+          "id": "link",
+          "label": "Link"
+        },
+        {
+          "type": "range",
+          "id": "text-size",
+          "min": 5,
+          "max": 72,
+          "step": 1,
+          "unit": "px",
+          "default": 20,
+		  "label": "Text size in px"
+        },
+        {
+          "type": "color",
+          "id": "color",
+          "default": "#fff",
+          "label": "Text Colour"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 5
+}
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}
