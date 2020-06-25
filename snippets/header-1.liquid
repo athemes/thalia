@@ -1,7 +1,20 @@
 <!-- Header -->
-<header class="header1">
+<header style="height:185px;" class="header1">
   <!-- Header desktop -->
-  <div class="container-menu-header">
+  <style>
+   @media only screen and (max-width: 600px) {
+  .hidemob {
+    display:none;
+  }
+     .item-menu-mobile {
+      text-align:center; 
+     }
+     .topbar-email, .topbar-child1{color:white;}
+     .topbar-social-item {color:white;}
+} 
+  </style>
+  <div class="column hidemob">
+    <div class="container">
     <div class="topbar">
       <div class="topbar-social">
         <div class="topbar-language rs1-select2" id="form-currency">
@@ -11,25 +24,29 @@
         {% include 'social-button-header' %}
       </div>
       <span class="topbar-child1">
-        {% if section.settings.use_top_bar %}
-        {{ section.settings.top_bar_message }}
-        {% endif %}
-      </span>
-      <div class="topbar-child2">
         {% if section.settings.show_email %}
         <span class="topbar-email">
           {{ section.settings.header_email_text }}
         </span>
         {% endif %}
+      </span>
+      <div class="topbar-child2">
+        {% if section.settings.use_top_bar %}
+        {{ section.settings.top_bar_message }}
+        {% endif %}
       </div>
     </div>
     <div class="wrap_header">
       <!-- Logo -->
-      {% include 'logo' %}
+      {% include 'search_header' %}
+      <style>
+        .menu .logo{left:50%;transform: translate(-50%,-50%);}
+        .black a{color:white!important;}
+      </style>
       <!-- Menu -->
       <div class="wrap_menu">
         <nav class="menu">
-          {% include 'main-menu' %}
+          {% include 'logo' %}
         </nav>
       </div>
       <!-- Header Icon -->
@@ -55,6 +72,11 @@
         </div>
       </div>
     </div>
+    </div>
+    <div style="background-color:black;color:white;" class="black">
+      {% include 'main-menu' %}
+    </div>
+    
   </div>
   <!-- Header Mobile -->
   <div class="wrap_header_mobile">
@@ -93,7 +115,7 @@
   <!-- Menu Mobile -->
   <div class="wrap-side-menu" >
     <nav class="side-menu">
-      <ul class="main-menu">
+      <ul style="height:800px;background-color:{{ settings.color_skin }};overflow-y:hidden;" class="main-menu">
         <li class="item-topbar-mobile p-l-20 p-t-8 p-b-8">
           <span class="topbar-child1">
             {% if section.settings.use_top_bar %}

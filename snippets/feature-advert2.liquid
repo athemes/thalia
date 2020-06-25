@@ -1,0 +1,36 @@
+<style>
+  .ad2text{
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform: translate(-50%, -50%);
+  color:white;
+  width:100%;
+  text-align:center;
+  }
+  .ad2text a {
+  color:white;
+  }
+</style>
+<section class="banner bgwhite p-t-40 p-b-40" data-section-id="{{ section.id }}">
+  <div class="container">
+    <div class="row">
+      {% if section.blocks.size > 0 %}
+      {% for block in section.blocks limit:2 %}
+      <div style="padding-bottom:20px;" class="col-12 col-sm-6">
+        <a href="{{ block.settings.link }}">
+          <img width="100%" src="{{ block.settings.image | img_url:"1000x680" }}"></a>
+        <div class="ad2text">
+        {% if block.settings.link_subtext != blank %}
+          <a href="{{ block.settings.link }}"><h3 style="font-size:14px">{{ block.settings.link_subtext }}</h3></a>
+        {% endif %}
+        {% if block.settings.link_text != blank %}
+          <a href="{{ block.settings.link }}"><h1 style="letter-spacing: 10px;font-weight:bold;font-size:{% if block.settings.link_subtext != blank %}60px{% else %}20px;{% endif %}">{{ block.settings.link_text }}</h1></a>
+          {% endif %}
+        </div>
+      </div>
+      {% endfor %}
+      {% endif %}
+    </div>
+  </div>
+</section>
