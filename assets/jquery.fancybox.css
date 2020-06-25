@@ -76,7 +76,7 @@
 }
 
 #fancybox-loading, .fancybox-close, .fancybox-prev span, .fancybox-next span {
-  background-image: url('//cdn.shopify.com/s/files/1/0279/8095/5745/t/2/assets/fancybox_sprite.png?v=3005993056200497091');
+  background-image: url('//cdn.shopify.com/s/files/1/0279/8095/5745/t/4/assets/fancybox_sprite.png?v=3005993056200497091');
 }
 
 #fancybox-loading {
@@ -94,7 +94,7 @@
 #fancybox-loading div {
 	width: 44px;
 	height: 44px;
-  background: url('//cdn.shopify.com/s/files/1/0279/8095/5745/t/2/assets/fancybox_loading.gif?28') center center no-repeat;
+  background: url('//cdn.shopify.com/s/files/1/0279/8095/5745/t/4/assets/fancybox_loading.gif?1485') center center no-repeat;
 }
 
 .fancybox-close {
@@ -184,7 +184,7 @@
 	overflow: hidden;
 	display: none;
 	z-index: 8010;
-  background: url('//cdn.shopify.com/s/files/1/0279/8095/5745/t/2/assets/fancybox_overlay.png?v=6179392631983182528');
+  background: url('//cdn.shopify.com/s/files/1/0279/8095/5745/t/4/assets/fancybox_overlay.png?v=6179392631983182528');
 }
 
 .fancybox-overlay-fixed {
