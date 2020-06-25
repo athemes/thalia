@@ -42,42 +42,42 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
 
 @font-face {
   font-family: Lato;
-  src: url('//cdn.shopify.com/s/files/1/0279/8095/5745/t/2/assets/Lato.ttf?28');
+  src: url('//cdn.shopify.com/s/files/1/0279/8095/5745/t/4/assets/Lato.ttf?1485');
 }
 
 @font-face {
   font-family: Montserrat-Medium;
-  src: url('//cdn.shopify.com/s/files/1/0279/8095/5745/t/2/assets/Montserrat-Medium.ttf?v=18036141443353890865');
+  src: url('//cdn.shopify.com/s/files/1/0279/8095/5745/t/4/assets/Montserrat-Medium.ttf?v=18036141443353890865');
 }
 
 @font-face {
   font-family: Montserrat-Bold;
-  src: url('//cdn.shopify.com/s/files/1/0279/8095/5745/t/2/assets/Montserrat-Bold.ttf?v=11996637141740364822');
+  src: url('//cdn.shopify.com/s/files/1/0279/8095/5745/t/4/assets/Montserrat-Bold.ttf?v=11996637141740364822');
 }
 
 @font-face {
   font-family: Montserrat-Italic;
-  src: url('//cdn.shopify.com/s/files/1/0279/8095/5745/t/2/assets/Montserrat-Italic.ttf?v=6685321042946058804');
+  src: url('//cdn.shopify.com/s/files/1/0279/8095/5745/t/4/assets/Montserrat-Italic.ttf?v=6685321042946058804');
 }
 
 @font-face {
   font-family: Montserrat-Black;
-  src: url('//cdn.shopify.com/s/files/1/0279/8095/5745/t/2/assets/Montserrat-Black.ttf?v=13925761044434732654');
+  src: url('//cdn.shopify.com/s/files/1/0279/8095/5745/t/4/assets/Montserrat-Black.ttf?v=13925761044434732654');
 }
 
 @font-face {
   font-family: Linearicons;
-  src: url('//cdn.shopify.com/s/files/1/0279/8095/5745/t/2/assets/Linearicons-Free.ttf?v=1702050803214495445');
+  src: url('//cdn.shopify.com/s/files/1/0279/8095/5745/t/4/assets/Linearicons-Free.ttf?v=1702050803214495445');
 }
 
 @font-face {
   font-family: Poppins-Bold;
-  src: url('//cdn.shopify.com/s/files/1/0279/8095/5745/t/2/assets/Poppins-Bold.ttf?v=12937691559153250179');
+  src: url('//cdn.shopify.com/s/files/1/0279/8095/5745/t/4/assets/Poppins-Bold.ttf?v=12937691559153250179');
 }
 
 @font-face {
   font-family: Poppins-Black;
-  src: url('//cdn.shopify.com/s/files/1/0279/8095/5745/t/2/assets/Poppins-Black.ttf?v=10194268556030084739');
+  src: url('//cdn.shopify.com/s/files/1/0279/8095/5745/t/4/assets/Poppins-Black.ttf?v=10194268556030084739');
 }
 
 /*[ RESTYLE TAG ]
@@ -115,7 +115,7 @@ a:focus {
 
 a:hover {
 	text-decoration: none;
-	color: #e65540;
+	color: #e69b40;
 }
 
 /* ------------------------------------ */
@@ -212,7 +212,7 @@ iframe {
     -o-animation: ball-scale infinite linear .75s;
     animation: ball-scale infinite linear .75s;
     border-radius: 100%;
-    background-color: #e65540;
+    background-color: #e69b40;
 }
 
 @-webkit-keyframes ball-scale {
@@ -432,12 +432,12 @@ iframe {
 }
 
 .select2-container .select2-results__option[aria-selected="true"] {
-  background-color: #e65540;
+  background-color: #e69b40;
   color: white;
 }
 
 .select2-container .select2-results__option--highlighted[aria-selected] {
-  background-color: #e65540;
+  background-color: #e69b40;
   color: white;
 }
 
@@ -703,13 +703,13 @@ iframe {
 
 li.sale-noti > a {
   padding-bottom:5px;
-  border-bottom: 2px solid #e65540;
+  border-bottom: 2px solid #e69b40;
 }
 
 .main_menu > li:hover > a {
   text-decoration: none;
   padding-bottom:5px;
-  border-bottom: 2px solid #e65540;
+  border-bottom: 2px solid #e69b40;
 }
 
 .main_menu li {
@@ -765,7 +765,7 @@ li.sale-noti > a {
 }
 
 .sub_menu > li:hover > a {
-  color: #e65540;
+  color: #e69b40;
   text-decoration: none;
 }
 
@@ -818,7 +818,7 @@ li.sale-noti > a {
   width: 16px;
   height: 16px;
   border-radius: 50%;
-  background-color: #E65540;
+  background-color: #e69b40;
   color: white;
   font-family: Lato;
   font-weight:400;
@@ -1152,7 +1152,7 @@ li.sale-noti > a {
 .side-menu .main-menu {margin-bottom: 0;}
 
 .item-menu-mobile {
-  background-color: #e65540;
+  background-color: #e69b40;
 }
 
 .side-menu .main-menu > li > a {
@@ -1209,7 +1209,7 @@ li.sale-noti > a {
 .side-menu .sub-menu a:hover {
   text-decoration: none;
   padding-left: 20px;
-  color: #e65540 !important;
+  color: #e69b40 !important;
 }
 
 .side-menu .sub-menu {
@@ -1497,7 +1497,7 @@ li.sale-noti > a {
 }
 
 .arrow-slick1:hover {
-  background-color: #e65540;
+  background-color: #e69b40;
 }
 
 .next-slick1 {
@@ -1668,7 +1668,7 @@ li.sale-noti > a {
 }
 
 .swal-button {
-    background-color: #e65540;
+    background-color: #e69b40;
     font-family: Lato;
     font-size: 15px;
     color: white;
@@ -1686,7 +1686,7 @@ li.sale-noti > a {
 }
 
 .swal-button:active {
-    background-color: #e65540;
+    background-color: #e69b40;
 }
 
 .swal-title {
@@ -1756,7 +1756,7 @@ li.sale-noti > a {
 }
 
 .block2-labelsale::before {
-  background-color: #e65540;
+  background-color: #e69b40;
   content: 'Sale';
 }
 
@@ -1861,7 +1861,7 @@ li.sale-noti > a {
 
 .block2-btn-towishlist .icon_heart {
   display: block;
-  color: #e65540;
+  color: #e69b40;
 }
 
 /* ------------------------------------ */
@@ -2091,8 +2091,8 @@ li.sale-noti > a {
   color: #808080;
   width: 36px;
   height: 36px;
-  border-radius: 50%;
-  border: 1px solid #eeeeee;
+  border-radius: 0%;
+  border: 0px;
   margin: 6px;
 }
 
@@ -2102,8 +2102,12 @@ li.sale-noti > a {
 }
 
 .active-pagination {
-  background-color: #222222;
-  color: white;
+  	background-color:white;
+    border-radius: 0%;
+    color: black;
+    border: 0px;
+    font-weight: 900;
+    border-bottom: 2px solid black;
 }
 
 
@@ -2338,7 +2342,7 @@ li.sale-noti > a {
 }
 
 .tag-item:hover {
-  border: 1px solid #e65540;
+  border: 1px solid #e69b40;
 }
 
 .tag-item-article {
@@ -2536,7 +2540,7 @@ footer#footer {
   color: #7d8184;
 }
 button:disabled {
-  background-color: #e65540 !important;
+  background-color: #e69b40 !important;
   width: 100%;
   opacity: .7;
   cursor: default;
