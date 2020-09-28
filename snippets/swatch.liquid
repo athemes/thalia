@@ -49,11 +49,12 @@
       {% assign values = values | join: ',' %}
       {% assign values = values | append: ',' | append: value %} 
       {% assign values = values | split: ',' %}
-      <div data-value="{{ value | escape }}" class="swatch-element {% if is_color %}color {% endif %}{{ value | handle }} {% if variant.available %}available{% else %}soldout{% endif %}">
+      <div option="{{ downcased_option }}" variants="{% for var in product.variants %}{% if var.title contains value %}{{ var.title | remove: value | remove: " / " }}{% endif %}{% endfor %}"
+           data-value="{{ value | escape }}" class="swatch-element {% if is_color %}color {% endif %}{{ value | handle }} {% if variant.available %}available{% else %}soldout{% endif %}">
         {% if is_color %}
         <div class="tooltip">{{ value }}</div>
         {% endif %}
-        <input id="swatch-{{ option_index }}-{{ value | handle }}" type="radio" name="option-{{ option_index }}" value="{{ value | escape }}"{% if forloop.first %} checked{% endif %} {% unless variant.available %}disabled{% endunless %} />
+        <input id="swatch-{{ option_index }}-{{ value | handle }}" type="radio" name="option-{{ option_index }}" value="{{ value | escape }}"{% if variant.selected %} checked{% endif %} {% unless variant.available %}disabled{% endunless %} />
         {% if is_color %}
         <div class="swatch-wrapper">
         <label id="{{ value | escape }}" for="swatch-{{ option_index }}-{{ value | handle }}" style="background-color: {{ value | escape }};opacity:0.7;{% comment %}background-image: url({{ value | handle | append: '.' | append: file_extension | asset_url }}){% endcomment %}">
@@ -77,5 +78,51 @@
 </div>
 
 {% endunless %}
-
+<script>
+  $(".swatch-element").click(function() {
+    var option=$(this).attr("option");
+    var variant=$(this).attr("variants");
+      $('.swatch-element').each(function() {
+        if ($(this).attr("option")!=option){
+          if (variant.includes($(this).attr("data-value"))){
+          	$(this).removeClass("soldout");
+            $(this).addClass("available");
+          }else{
+          	$(this).removeClass("available");
+            $(this).addClass("soldout");
+          } 
+        }
+    });
+    setTimeout(function(){
+    if ($("#button-cart").hasClass("disabled")){
+    	$("#button-cart").text("Sold Out");
+    }else {
+    	$("#button-cart").text("Add To Cart");
+    }
+    }, 200);
+  });
+</script>
+<script>
+  $( document ).ready(function() {
+  setTimeout(function(){
+  $("label").each(function() {
+   if($(this).css("background-color") == "rgb(13, 13, 13)"){
+   var option= $(this).parent().attr("option");
+   var variant= $(this).parent().attr("variants");
+   $('.swatch-element').each(function() {
+        if ($(this).attr("option")!=option){
+          if (variant.includes($(this).attr("data-value"))){
+          	$(this).removeClass("soldout");
+            $(this).addClass("available");
+          }else{
+          	$(this).removeClass("available");
+            $(this).addClass("soldout");
+          } 
+        }
+    });
+    }
+     });
+    }, 300);
+    });
+</script>
 {% endif %}
