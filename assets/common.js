@@ -68,7 +68,17 @@ $(document).ready(function() {
   }
 
   // vertical thumbs on product page
-  
+  {% if settings.product_vertical_thumbs == true %}
+  $('.bxslider').bxSlider({
+    mode: 'vertical',
+    slideMargin: 10,
+    infiniteLoop: false,
+    hideControlOnEnd: false,
+    adaptiveWidth: false,
+    minSlides: 6,
+    moveSlides: 1
+  });
+  {% endif %}
 
   // product video
   $('.popup-youtube, .popup-vimeo, .popup-gmaps').magnificPopup({
@@ -97,7 +107,10 @@ $(document).ready(function() {
     $.ajax({
       url: '/cart/add.js',
       type: 'post',
-      data: $('#form_buy input[type=\'text\'], #form_buy select'),
+      data: {
+        id: document.querySelector("#productSelect").options[document.querySelector("#productSelect").selectedIndex].value ,
+        quantity: parseFloat(document.querySelector("#Quantity").value) 
+      },
       dataType: 'json',
       beforeSend: function() {
         $('#button-cart').button('loading');
