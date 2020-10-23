@@ -386,6 +386,7 @@ var cart = {
         } else {
           $('#cart').load('/ #cart #subcart');
         }
+        location.reload();
       },
       error: function(xhr, ajaxOptions, thrownError) {
         alert(xhr.responseText);
