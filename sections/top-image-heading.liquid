@@ -1,0 +1,45 @@
+{% if section.settings.show_about_top_image == "show" %}<section class="bg-title-page p-t-40 p-b-50 flex-col-c-m"  {% if section.settings.show_about_top_image == "show" %}style="background-image:url({{ section.settings.top-image | img_url: "grande" }});" {% endif %}>
+  <h2 class="l-text2 t-center">
+    {{ section.settings.top-heading }}
+  </h2>
+</section>{% endif %}
+{% schema %}
+{
+  "name": "Heading Image",
+  "settings": [
+    {
+      "type": "select",
+      "id": "show_about_top_image",
+      "options": [
+        {
+          "value": "show",
+          "label": "Show"
+        },
+        {
+          "value": "hide",
+          "label": "Hide"
+        }
+      ],
+      "label": "Show or hide this section"
+    },
+    {
+      "type": "image_picker",
+	  "label": "Image",
+      "id": "top-image"
+    },
+    {
+      "type": "text",
+      "id": "top-heading",
+      "placeholder": "Heading",
+      "default": "About Us",
+      "label": "Heading"
+    }
+  ]
+}
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

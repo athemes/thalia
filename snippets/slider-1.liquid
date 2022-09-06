@@ -1,0 +1,54 @@
+<!-- Slide1 -->
+<section class="slide1">
+  <div class="wrap-slick1">
+    <div class="slick1">
+      {% if section.blocks.size > 0 %}
+      {% for block in section.blocks %}
+      <div class="item-slick1 item{{forloop.index}}-slick1" {% if block.settings.image != blank %}style="background-image: url({{ block.settings.image | img_url: '1920x570' }}); background-color: #0d0d0d;"{% endif %}>
+        <style>
+          @media screen and (max-width: 768px) {
+            .wrap-content-slide1-{{ block.settings.id }} {
+              padding: 15px 20px;
+            }
+          }
+          
+          @media screen and (min-width: 768px) {
+             .wrap-content-slide1-{{ block.settings.id }} {
+              padding: 75px;
+              align-items: {{ block.settings.textbox-alignment }};
+              justify-content: {{ block.settings.textbox-vertical-alignment }};
+            }
+            .wrap-content-slide1-{{ block.settings.id }} .wrap-content-holder {
+              margin-left: {{ block.settings.horizontal-offset | times: 2 }}px;
+              margin-top: {{ block.settings.vertical-offset | times: 2 }}px;
+            }
+          }
+        </style>
+        <div class="wrap-content-slide1 sizefull flex-col-c-m p-l-15 p-r-15 p-t-150 p-b-170 wrap-content-slide1-{{ block.settings.id }}">
+          <div style="text-align: {{ block.settings.text-alignment }}" class="wrap-content-holder">
+            {% if block.settings.heading != blank %}  
+            <span class="caption1-slide1 m-text1 t-center animated {% unless request.design_mode %}visible-false{% endunless %} m-b-15" {% unless request.design_mode %}data-appear="{{ block.settings.heading_appear }}"{% endunless %}>
+              {{ block.settings.heading }}
+            </span>
+            {% endif %}
+            {% if block.settings.subheading != blank %}  
+            <h2 class="caption2-slide1 xl-text1 t-center animated {% unless request.design_mode %}visible-false{% endunless %} m-b-37" {% unless request.design_mode %}data-appear="{{ block.settings.subheading_appear }}"{% endunless %}>
+              {{ block.settings.subheading }}
+            </h2>
+            {% endif %}
+            {% if block.settings.slide_link_text != blank %} 
+            <div style="display: flex; justify-content: {% if block.settings.text-alignment == "left" %}flex-start{% elsif block.settings.text-alignment == "center" %}center{% else %}flex-end{% endif %}; width: 100%;" class="wrap-btn-slide1 w-size1 animated {% unless request.design_mode %}visible-false{% endunless %}" {% unless request.design_mode %}data-appear="{{ block.settings.slide_appear }}"{% endunless %}>
+              <!-- Button -->
+              <a href="{{ block.settings.slide_link }}" class="flex-c-m size15 bo-rad-2 s-text2 bgblack hov1 trans-0-4 w-size1">
+                {{ block.settings.slide_link_text }}
+              </a>
+            </div>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+      {% endif %}
+    </div>
+  </div>
+</section>

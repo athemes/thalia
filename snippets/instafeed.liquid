@@ -1,0 +1,11 @@
+{{ 'instafeed.min.js' | asset_url | script_tag }}
+  <div class="sec-title p-b-52 p-l-15 p-r-15">
+    {% if section.settings.insta_subtitle != blank%}
+    <h3 style="font-size:35px;font-weight:500;padding-bottom:20px;text-transform: unset;color:{{ settings.color_skin }};" class="m-text5 t-center">{{ section.settings.insta_subtitle }}</h3>
+    {% endif %}
+    {% if section.settings.insta_title != blank%}
+    <h3 style="font-weight:500;font-size:30px;text-transform: unset;" class="m-text5 t-center">{{ section.settings.insta_title }}</h3>
+    {% endif %}
+  </div>
+  <div class="flex-w owl-carousel owl-theme" id="instafeed">
+</div>

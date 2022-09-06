@@ -1,0 +1,59 @@
+<style>
+  #shopify-section-{{ section.id }} {
+    margin-top: {{ section.settings.top-margin }}px;
+    margin-bottom: {{ section.settings.bottom-margin }}px;
+  }
+</style>
+<!-- New Product -->
+<section class="newproduct bgwhite" data-section-id="{{ section.id }}">
+  {% include "feature-carousal" %}
+</section>
+{% schema %}
+{
+"name": "Featured collection",
+"class": "index-section",
+  "settings": [
+    {
+          "type": "range",
+          "id": "top-margin",
+          "min": 0,
+          "max": 200,
+          "step": 2,
+          "default": 0,
+          "label": "Top Margin"
+    },
+    {
+          "type": "range",
+          "id": "bottom-margin",
+          "min": 0,
+          "max": 200,
+          "step": 2,
+          "default": 0,
+          "label": "Bottom margin"
+    },
+	{
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "FEATURED PRODUCTS"
+    },
+    {
+      "id": "collection",
+      "type": "collection",
+      "label": "Collection"
+    },
+    {
+      "type": "text",
+      "id": "products_tab_count",
+      "label": "No of products to show",
+      "default": "8"
+    }
+  ],
+  "presets": [
+    {
+    "name": "Featured collection",
+    "category": "Collection"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,53 @@
+<style>
+  #shopify-section-{{ section.id }} {
+    margin-top: {{ section.settings.top-margin }}px;
+    margin-bottom: {{ section.settings.bottom-margin }}px;
+  }
+</style>
+<!-- Blog -->
+{% include "blog-1" %}         
+{% schema %}
+{
+   "name": "Blog section",
+   "class": "index-section index-section--flush",
+   "max_blocks": 3,
+   "settings": [
+      {
+            "type": "range",
+            "id": "top-margin",
+            "min": 0,
+            "max": 200,
+            "step": 2,
+            "default": 0,
+            "label": "Top Margin"
+      },
+      {
+            "type": "range",
+            "id": "bottom-margin",
+            "min": 0,
+            "max": 200,
+            "step": 2,
+            "default": 0,
+            "label": "Bottom margin"
+      },
+      {
+         "type": "text",
+         "id": "heading",
+         "label": "Heading",
+         "default": "LATEST BLOGS & UPDATES"
+      },
+      {
+         "type": "blog",
+         "id": "blog",
+         "label": "Blog"
+      }
+   ],
+   "blocks": [],
+   "presets": [
+      {
+         "name": "Blog section",
+         "category": "Feature Sections"
+      }
+   ]
+}
+{% endschema %}

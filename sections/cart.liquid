@@ -1,0 +1,93 @@
+<!-- sections/my-cart.liquid -->
+
+<form action="{{ routes.cart_url }}" method="post" class="my-cart">
+  <!-- data-ajax-cart-section makes the element's HTML update
+  when the cart gets changed -->
+  <a class="closeCart" data-ajax-cart-toggle-class-button="js-my-cart-open">
+  <svg width="20" height="20" class="Icon Icon--x" role="presentation" viewBox="0 0 16 14">
+      <path d="M15 0L1 14m14 0L1 0" stroke="currentColor" fill="none" fill-rule="evenodd"></path>
+    </svg>
+  </a>
+  <div class="cartDiv" data-ajax-cart-section>
+    <div class="cartHeader">
+    	<h2>Your Cart ({{ cart.item_count }} Items)</h2>
+    </div>
+    <!-- data-ajax-cart-section-scroll keeps the scroll position unchanged
+    when the element's HTML is changed -->
+    {% if cart.items.size == 0 %}
+    <div class="emptyCart">
+      <p>Your cart is empty.</p>
+    </div>
+    {% else %}
+    <div class="my-cart__items" data-ajax-cart-section-scroll>
+      {% for item in cart.items %}
+      <div class="cartItem">
+        {% assign item_index = forloop.index %}
+        <div class="itemImage">
+          <img src="{{ item | img_url: '200x', scale: 2 }}">
+        </div>
+        <div class="itemInfo">
+        <div class="itemTitlePrice">
+        <div class="itemTitle"><a href="{{ item.url }}">{{ item.title }}</a></div>
+
+        {% for property in item.properties %}
+          <div>
+            {{ property.first }}:
+            {% if property.first == 'Engraving' %}
+              <!-- data-ajax-cart-property-input ajaxifies the line item property input -->
+              <input type="text"
+                value="{{ property.last }}" 
+                data-ajax-cart-property-input="{{ item_index }}[{{ property.first }}]"/>
+              {% else %}
+                {{ property.last }}
+              {% endif %}
+          </div>
+        {% endfor %}
+
+        <div class="itemPrice">{{ item.final_line_price | money }}</div>
+         </div>
+        <div>
+          <p class="itemQtyWord">Quantity:</p>
+          <div class="itemQty">
+          <!-- data-ajax-cart-request-button ajaxifies the "Minus one" button -->
+          <a class="itemMinus" data-ajax-cart-request-button
+            href="{{ routes.cart_change_url }}?line={{ item_index }}&quantity={{ item.quantity | minus: 1 }}" > 
+            &#8722;
+          </a>
+
+          <!-- data-ajax-cart-quantity-input ajaxifies the line item quantity input -->
+          <input data-ajax-cart-quantity-input="{{ item_index }}"
+            name="updates[]" 
+            value="{{ item.quantity }}" 
+            type="text" />
+
+          <!-- data-ajax-cart-request-button ajaxifies the "Plus one" button -->
+          <a class="itemPlus" data-ajax-cart-request-button 
+            href="{{ routes.cart_change_url }}?line={{ item_index }}&quantity={{ item.quantity | plus: 1 }}"> 
+            &#43; 
+          </a>
+          </div>
+        </div>
+
+        <!-- Container for errors -->
+        <div data-ajax-cart-messages="{{ item.key }}"></div>
+
+        </div>
+        </div>
+      {% endfor %}
+    </div>
+
+    
+    <!-- data-ajax-cart-static-element keeps the container unchanged
+    when the cart and the surrounding HTML get updated -->
+    <div data-ajax-cart-static-element class="my-cart__app-container"></div>
+    <div class="bottomCart">
+    <button type="submit" name="checkout">
+      Checkout — {{ cart.total_price | money_with_currency }}
+    </button> 
+    </div>
+    {% endif %}
+  </div>
+</form>
+
+{% schema %} { "name": "My Cart" } {% endschema %}

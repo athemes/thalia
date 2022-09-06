@@ -1,0 +1,143 @@
+<style>
+  .item-image {
+    height:200px;
+    width:200px;
+    border-radius:100%;
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%,-50%);
+    background-size:200px 200px;
+    background-color:#fff;
+  }
+  .item-price {
+    height:100px;
+    width:100px;
+    padding:12px;
+    text-align:center;
+    border-radius:100%;
+    position: absolute;
+    top: 35%; left: 20%;
+    transform: translate(-50%,-50%);
+  }
+  .fromusd{
+    font-size:15px;
+    color:white;
+  }
+  .priceusd{
+    font-size:25px;
+    color:white;
+  }
+  .xl-text1--timer{
+  color:black!important;
+  }
+</style>
+<section style="background-color:{{ section.settings.background_color }};" class="banner2 bg5" data-section-id="{{ section.id }}">
+  <div class="container">
+    <div style="margin:0px;" class="row">
+      <div style="padding-top:100px;" class="col-sm-10 col-md-8 col-lg-5 m-l-r-auto">  
+            {% if section.settings.heading != blank %} 
+            <span style="font-size:16px;font-weight:bold;color:{% for block in section.blocks %}{{ block.settings.product_color }}{% endfor %};" class="s-text4 p-t-45 fs-20-sm">
+              {{ section.settings.heading }}
+            </span>
+            {% endif %}
+            {% if section.settings.subheading != blank %} 
+            <h3 style="font-size:36px;font-weight:500;color:black;padding-top:0px;" class="l-text5 p-t-20 fs-35-sm">
+              {{ section.settings.subheading }}
+            </h3>
+            {% endif %}
+             {% for block in section.blocks %}
+        		{% if block.settings.timer %}
+                  <div style="justify-content:unset;padding-top:0px;" class="countdown-timer flex-c-m p-t-44 p-t-30-xl">
+                    <div style="margin-left:0px;" class="flex-col-c-m m-l-25 m-r-25">
+                      <span class="xl-text1--timer p-b-1 days" id="days">
+
+                      </span>
+                      <span class="s-text5">
+                        days
+                      </span>
+                    </div>
+                    <div class="flex-col-c-m m-l-25 m-r-25">
+                      <span class="xl-text1--timer p-b-1 hours" id="hours">
+                      </span>
+                      <span class="s-text5">
+                        hrs
+                      </span>
+                    </div>
+                    <div class="flex-col-c-m m-l-25 m-r-25">
+                      <span class="xl-text1--timer p-b-1 minutes" id="minutes">
+                      </span>
+                      <span class="s-text5">
+                        mins
+                      </span>
+                    </div>
+                    <div class="flex-col-c-m m-l-25 m-r-25">
+                      <span class="xl-text1--timer p-b-1 seconds" id="seconds">
+                      </span>
+                      <span class="s-text5">
+                        secs
+                      </span>
+                    </div>
+                  </div>
+
+              <script type="text/javascript">
+                // Set the date we're counting down to
+                {% if block.settings.expirty_deal == blank %}
+                {% assign date = 'now' | date: '%s' %}
+                    {% assign seconds = 7 | times: 24 | times: 60 | times: 60 %}
+                    
+                var countDownDate = new Date("{{ date | date: "%s" | plus: seconds | date: "%Y-%m-%d" }}").getTime();
+                {% else %}
+                   var countDownDate = new Date("{{ block.settings.expiry_deal }}").getTime();
+                {% endif %}
+
+                                             // Update the count down every 1 second
+                                             var x = setInterval(function() {
+
+                  // Get todays date and time
+                  var now = new Date().getTime();
+
+                  // Find the distance between now an the count down date
+                  var distance = countDownDate - now;
+
+                  // Time calculations for days, hours, minutes and seconds
+                  var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                  var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                  var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                  var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                  // Output the result in an element with id="demo"
+                  document.getElementById("days").innerHTML = days;
+                  document.getElementById("hours").innerHTML = hours;
+                  document.getElementById("minutes").innerHTML = minutes;
+                  document.getElementById("seconds").innerHTML = seconds;
+
+                  // If the count down is over, write some text
+                  if (distance < 0) {
+                    clearInterval(x);
+                    document.getElementById("demo").innerHTML = "EXPIRED";
+                  }
+                }, 1000);
+              </script>
+        {% endif %}
+     {% endfor %} 
+        {% if section.settings.link != blank %}          
+            <a style="margin-top:20px;width:40%;" href="{{ section.settings.link }}" class="flex-c-m size15 bo-rad-2 s-text2 bgblack hov1 trans-0-4" {{ section.shopify_attributes }}>{{ section.settings.link_text }}</a>
+        {% endif %}
+      </div>
+      {% if section.blocks.size > 0 %}
+      {% for block in section.blocks %}
+      {% assign product = all_products[block.settings.product_deal] %}
+      <div style="padding:0px;height:500px;" class="col-sm-10 col-md-8 col-lg-3 m-l-r-auto p-t-15 p-b-15">
+        <div style="background-image:url('{{ block.settings.product_image | img_url: '700x700' }}');" class="item-image"></div>
+        {% if product != blank %}<div style="background-color:{{ block.settings.product_color }};" class="item-price"><span class="fromusd">From</span><br><span style="padding-bottom:10px;" class="fromusd">{{ cart.currency.symbol }}</span><span class="priceusd">{{ product.price_min | money_without_currency | remove: ".00" }}</span></div>{% endif %}
+      </div>
+      <div style="padding:0px;" class="col-sm-10 col-md-8 col-lg-4 m-l-r-auto p-t-15 p-b-15">
+        {% if section.settings.image != blank %}
+            <img style="width:100%;" src="{{ section.settings.image | img_url: '720x539' }}" alt="" class="" />
+        {% endif %}
+      </div>
+      {% endfor %}
+      {% endif %}
+    </div>
+  </div>
+</section>

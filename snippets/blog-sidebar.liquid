@@ -1,0 +1,36 @@
+<div class="col-md-4 col-lg-3 p-b-75">
+  <div class="rightbar">
+    <!-- Search -->
+    <div class="pos-relative bo4 of-hidden">
+      <form action="/search" method="POST" role="search" id="blog-search">
+        <input type="hidden" name="type" value="product">
+        <input class="s-text7 size1 p-l-23 p-r-50" autocomplete="off" type="text" name="q" value="{{ search.terms | escape }}" placeholder="{{ 'layout.search_bar.placeholder_blog' | t }}" aria-label="{{ 'layout.search_bar.placeholder_blog' | t }}">
+        <button class="flex-c-m size5 ab-r-m color2 color0-hov trans-0-4">
+          <i class="fs-13 fa fa-search" aria-hidden="true"></i>
+        </button>
+      </form>
+    </div>
+
+    {% if section.settings.show_blog_side_listing %}
+    <!-- Featured Products -->
+    <h4 class="m-text14 p-b-20 p-t-20">
+      {{ section.settings.blog_side_listing_title }}
+    </h4>
+    <ul class="bgwhite">
+      {% assign product_collection = section.settings.blog_side_listing %}
+      {% for product in collections[product_collection].products limit:5 %}
+      {% include 'product-grid-item-small' %}
+      {% endfor %}    
+    </ul>
+    {% endif %}
+    <!-- Tags -->
+    <h4 class="m-text14 p-b-20 p-t-20">
+      {{ 'blogs.sidebar.tags_cloud' | t }}
+    </h4>
+    <div class="wrap-tags flex-w">
+      {% for tag in blog.all_tags %}
+      <a class="tag-item" href="{{ blog.url }}/tagged/{{ tag | handle }}">{{ tag }}</a>
+      {% endfor %}
+    </div>
+  </div>
+</div>

@@ -1,0 +1,23 @@
+<div class="container">
+<div class="flex-w p-l-20 p-r-20 p-b-20 p-t-20  bo16">
+  {% if section.blocks.size > 0 %}
+  {% for block in section.blocks limit:4 %}
+  <div class="flex-col-c w-size6-1 p-l-15 p-r-15 p-t-16 p-b-15 respon1">
+    <div class="feature-service_wrapper">
+    <div class="feature-service_image p-r-20">
+    <img src="{{ block.settings.icon | img_url }}">
+    </div>
+    <div class="feature-service_text t-left">
+    <h4 class="m-text12 t-left">
+      {{ block.settings.feature_service_title }}
+    </h4>
+    <span class="s-text11 t-left">
+      {{ block.settings.feature_service_description }}
+    </span>
+  </div>
+  </div>
+  </div>
+  {% endfor %}
+  {% endif %}
+</div>
+</div>

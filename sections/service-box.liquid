@@ -1,0 +1,71 @@
+<style>
+  #shopify-section-{{ section.id }} {
+    margin-top: {{ section.settings.top-margin }}px;
+    margin-bottom: {{ section.settings.bottom-margin }}px;
+  }
+</style>
+<!-- Shipping -->
+<section class="shipping bgwhite" data-section-id="{{ section.id }}">
+  {% include "feature-service1" %}
+</section>
+{% schema %}
+{
+  "name": "Service Boxes section",
+  "max_blocks": 4,
+  "settings": [
+	{
+          "type": "range",
+          "id": "top-margin",
+          "min": 0,
+          "max": 200,
+          "step": 2,
+          "default": 0,
+          "label": "Top Margin"
+    },
+    {
+          "type": "range",
+          "id": "bottom-margin",
+          "min": 0,
+          "max": 200,
+          "step": 2,
+          "default": 0,
+          "label": "Bottom margin"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "box",
+      "name": "Feature box",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "icon",
+          "label": "Icon"
+        },
+        {
+          "type": "text",
+          "id": "feature_service_title",
+          "label": "Feature Title"
+        },
+        {
+          "type": "textarea",
+          "id": "feature_service_description",
+          "label": "Feature description"
+        }
+      ]
+    }
+  ],
+  "presets": [{
+    "name": "Service box section",
+    "category": "Feature Sections",
+    "blocks": [
+      {
+        "type": "box"
+      },
+      {
+        "type": "box"
+      }
+    ]
+  }]
+}
+{% endschema %}

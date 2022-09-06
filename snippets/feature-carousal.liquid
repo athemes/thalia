@@ -1,0 +1,87 @@
+{% assign product_collection = section.settings.collection %}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glider-js@1/glider.min.css">
+<style>
+  .glider-slide.active {background-color:unset;}
+</style>
+<div class="container">
+  <div class="sec-title p-b-60">
+    {% if section.settings.heading != blank %}  
+    <h3 style="font-weight:500;text-transform:unset;font-size:36px;" class="m-text5 t-center">{{ section.settings.heading }}</h3>
+    {% endif %}
+  </div>
+  <!-- Slide2 -->
+  <div class="glider-contain">
+  <div class="glider-{{ collections[product_collection].handle }}">
+    {% for product in collections[product_collection].products limit:section.settings.products_tab_count %}
+    <div style="padding:10px;">{% include 'product-grid-item' %}</div>
+    {% endfor %}
+  </div>
+
+  <button aria-label="Previous" class="glider-prev glider-prev-{{ collections[product_collection].handle }}"><</button>
+  <button aria-label="Next" class="glider-next glider-next-{{ collections[product_collection].handle }}">></button>
+  <div role="tablist" class="dots"></div>
+</div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/glider-js@1/glider.min.js"></script>
+<script>
+  window.addEventListener('load', function(){
+  new Glider(document.querySelector('.glider-{{ collections[product_collection].handle }}'), {
+
+  // `auto` allows automatic responsive
+  // width calculations
+  slidesToShow: 'auto',
+  slidesToScroll: 'auto',
+
+  // dot container element or selector
+
+  // arrow container elements or selector
+  arrows: {
+    prev: '.glider-prev-{{ collections[product_collection].handle }}',
+    // may also pass element directly
+    next: document.querySelector('.glider-next-{{ collections[product_collection].handle }}')
+  },
+
+  // allow mouse dragging
+  draggable: false,
+  // how much to scroll with each mouse delta
+  dragVelocity: 3.3,
+
+  // use any custom easing function
+  // compatible with most easing plugins
+  easing: function (x, t, b, c, d) {
+    return c*(t/=d)*t + b;
+  },
+
+  // event control
+  scrollPropagate: false,
+  eventPropagate: true,
+
+  // Force centering slide after scroll event
+  scrollLock: true,
+  // how long to wait after scroll event before locking
+  // if too low, it might interrupt normal scrolling
+  scrollLockDelay: 150,
+
+  // Force centering slide after resize event
+  resizeLock: true,
+
+  // Glider.js breakpoints are mobile-first
+  responsive: [
+    {
+      breakpoint: 900,
+      settings: {
+        slidesToShow: 4,
+        slidesToScroll: 4
+      }
+    },
+    {
+      breakpoint: 575,
+      settings: {
+        slidesToShow: 4,
+        slidesToScroll: 4
+      }
+    }
+  ]
+});
+})
+</script>

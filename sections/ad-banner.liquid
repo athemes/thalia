@@ -1,0 +1,96 @@
+<style>
+  #shopify-section-{{ section.id }} {
+    margin-top: {{ section.settings.top-margin }}px;
+    margin-bottom: {{ section.settings.bottom-margin }}px;
+  }
+</style>
+<!-- Banner -->
+{% include section.settings.feature_advert_design %}
+{% schema %}
+{
+  "name": "Ad banner section",
+  "class": "index-section index-section--flush",
+  "max_blocks": 6,
+  "settings": [
+    {
+          "type": "range",
+          "id": "top-margin",
+          "min": 0,
+          "max": 200,
+          "step": 2,
+          "default": 0,
+          "label": "Top Margin"
+    },
+    {
+          "type": "range",
+          "id": "bottom-margin",
+          "min": 0,
+          "max": 200,
+          "step": 2,
+          "default": 0,
+          "label": "Bottom margin"
+    },
+    {
+    "type": "select",
+    "id": "feature_advert_design",
+    "label": "Select Design",
+    "options": [
+	  {
+      "value": "feature-advert6",
+      "label": "Design 6 ( Six images )"
+      },
+      {
+      "value": "feature-advertthree",
+      "label": "Design 3 ( Three images )"
+      },
+	  {
+      "value": "feature-advert2",
+      "label": "Design 2 ( Two images )"
+      }
+    ],
+    "default": "feature-advert2"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "image",
+      "name": "Image slide",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image",
+          "info": "ad image"
+        },
+        {
+          "type": "text",
+          "id": "link_text",
+          "label": "Link Text"
+        },
+		{
+          "type": "text",
+          "id": "link_subtext",
+          "label": "Link Subtext"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link URL"
+		}
+      ]
+    }
+  ],
+  "presets": [{
+    "name": "Ad banner section",
+    "category": "Image",
+    "blocks": [
+      {
+        "type": "image"
+      },
+      {
+        "type": "image"
+      }
+    ]
+  }]
+}
+{% endschema %}
